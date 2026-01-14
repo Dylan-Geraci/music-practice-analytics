@@ -1,2 +1,19 @@
+# Local tracking
 changes.md
+
+# Environment variables
 .env
+.env.local
+
+# Frontend
+node_modules/
+dist/
+
+# Backend
+__pycache__/
+venv/
+.venv/
+.pytest_cache/
+
+# OS
+.DS_Store
