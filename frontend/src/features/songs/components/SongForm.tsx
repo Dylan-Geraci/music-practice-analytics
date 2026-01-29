@@ -39,12 +39,16 @@ export default function SongForm({ open, onOpenChange, song }: SongFormProps) {
     e.preventDefault()
     const formData = { title, artist, target_tempo: targetTempo }
 
-    if (isEdit) {
-      await updateSong.mutateAsync({ id: song.id, formData })
-    } else {
-      await createSong.mutateAsync(formData)
+    try {
+      if (isEdit) {
+        await updateSong.mutateAsync({ id: song.id, formData })
+      } else {
+        await createSong.mutateAsync(formData)
+      }
+      onOpenChange(false)
+    } catch (err) {
+      console.error('Failed to save song:', err)
     }
-    onOpenChange(false)
   }
 
   const loading = createSong.isPending || updateSong.isPending

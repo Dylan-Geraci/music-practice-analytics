@@ -24,9 +24,13 @@ export function useCreateSong() {
 
   return useMutation({
     mutationFn: async (formData: SongFormData) => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) throw new Error('Not authenticated')
+
       const { data, error } = await supabase
         .from('songs')
         .insert({
+          user_id: session.user.id,
           title: formData.title.trim(),
           artist: formData.artist.trim() || null,
           target_tempo: formData.target_tempo ? parseInt(formData.target_tempo) : null,

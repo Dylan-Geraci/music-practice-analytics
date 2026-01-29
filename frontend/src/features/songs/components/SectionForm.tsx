@@ -42,12 +42,16 @@ export default function SectionForm({ open, onOpenChange, songId, section }: Sec
     e.preventDefault()
     const formData = { name, order_index: orderIndex, target_tempo: targetTempo, notes }
 
-    if (isEdit) {
-      await updateSection.mutateAsync({ id: section.id, formData })
-    } else {
-      await createSection.mutateAsync({ songId, formData })
+    try {
+      if (isEdit) {
+        await updateSection.mutateAsync({ id: section.id, formData })
+      } else {
+        await createSection.mutateAsync({ songId, formData })
+      }
+      onOpenChange(false)
+    } catch (err) {
+      console.error('Failed to save section:', err)
     }
-    onOpenChange(false)
   }
 
   const loading = createSection.isPending || updateSection.isPending
