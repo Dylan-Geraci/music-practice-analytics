@@ -1,26 +1,27 @@
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Routes, Route } from 'react-router-dom'
+import Layout from '@/components/Layout'
+import ProtectedRoute from '@/components/ProtectedRoute'
+import LoginPage from '@/pages/LoginPage'
+import DashboardPage from '@/pages/DashboardPage'
+import SongsPage from '@/pages/SongsPage'
+import SessionsPage from '@/pages/SessionsPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen p-8">
-      <Card className="max-w-md mx-auto">
-        <CardHeader>
-          <CardTitle>Music Practice Analytics</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-muted-foreground">
-            Frontend setup complete with shadcn/ui and TanStack Query.
-          </p>
-          <Button onClick={() => setCount((count) => count + 1)}>
-            Count is {count}
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/songs" element={<SongsPage />} />
+        <Route path="/sessions" element={<SessionsPage />} />
+      </Route>
+    </Routes>
   )
 }
 
