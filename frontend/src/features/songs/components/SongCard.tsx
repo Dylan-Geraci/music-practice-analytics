@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight, Pencil, Trash2 } from 'lucide-react'
 import { useDeleteSong } from '../hooks/useSongs'
 import SongForm from './SongForm'
 import SectionList from './SectionList'
-import DeleteConfirmDialog from './DeleteConfirmDialog'
+import DeleteConfirmDialog from '@/components/DeleteConfirmDialog'
 import type { Song } from '../types'
 
 interface SongCardProps {

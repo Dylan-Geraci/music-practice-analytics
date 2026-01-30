@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { useDeleteSection } from '../hooks/useSections'
 import SectionForm from './SectionForm'
-import DeleteConfirmDialog from './DeleteConfirmDialog'
+import DeleteConfirmDialog from '@/components/DeleteConfirmDialog'
 import type { Section } from '../types'
 
 interface SectionListProps {
