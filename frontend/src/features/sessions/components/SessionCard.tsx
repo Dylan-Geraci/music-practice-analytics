@@ -17,9 +17,6 @@ function formatDate(iso: string) {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
-  }) + ' at ' + d.toLocaleTimeString(undefined, {
-    hour: 'numeric',
-    minute: '2-digit',
   })
 }
 

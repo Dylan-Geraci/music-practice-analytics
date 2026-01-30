@@ -26,14 +26,14 @@ interface SessionFormProps {
   session?: Session
 }
 
-function toDatetimeLocal(iso: string) {
+function toDateValue(iso: string) {
   const d = new Date(iso)
   const pad = (n: number) => n.toString().padStart(2, '0')
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 }
 
-function nowDatetimeLocal() {
-  return toDatetimeLocal(new Date().toISOString())
+function todayDateValue() {
+  return toDateValue(new Date().toISOString())
 }
 
 export default function SessionForm({ open, onOpenChange, session }: SessionFormProps) {
@@ -58,7 +58,7 @@ export default function SessionForm({ open, onOpenChange, session }: SessionForm
     if (open) {
       setSongId(session?.song_id ?? '')
       setSectionId(session?.section_id ?? '')
-      setPracticedAt(session?.practiced_at ? toDatetimeLocal(session.practiced_at) : nowDatetimeLocal())
+      setPracticedAt(session?.practiced_at ? toDateValue(session.practiced_at) : todayDateValue())
       setDurationMinutes(session?.duration_minutes?.toString() ?? '')
       setTempoBpm(session?.tempo_bpm?.toString() ?? '')
       setAccuracyRating(session?.accuracy_rating?.toString() ?? '')
@@ -76,7 +76,7 @@ export default function SessionForm({ open, onOpenChange, session }: SessionForm
     const formData = {
       song_id: songId,
       section_id: sectionId,
-      practiced_at: practicedAt ? new Date(practicedAt).toISOString() : '',
+      practiced_at: practicedAt ? new Date(practicedAt + 'T12:00:00').toISOString() : '',
       duration_minutes: durationMinutes,
       tempo_bpm: tempoBpm,
       accuracy_rating: accuracyRating,
@@ -144,11 +144,12 @@ export default function SessionForm({ open, onOpenChange, session }: SessionForm
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="session-practiced-at">Practiced at</Label>
+            <Label htmlFor="session-practiced-at">Date</Label>
             <Input
               id="session-practiced-at"
-              type="datetime-local"
+              type="date"
               value={practicedAt}
+              max={todayDateValue()}
               onChange={(e) => setPracticedAt(e.target.value)}
               required
             />
