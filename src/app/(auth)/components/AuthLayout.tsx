@@ -26,7 +26,7 @@ export function AuthLayout({ children, features }: AuthLayoutProps) {
             <Music className="h-10 w-10" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Practice Analytics</h1>
+            <h1 className="text-2xl font-bold tracking-tight">SessionLog</h1>
             <p className="mt-2 text-sm text-white/70">
               Track your progress. Build your streak.
             </p>

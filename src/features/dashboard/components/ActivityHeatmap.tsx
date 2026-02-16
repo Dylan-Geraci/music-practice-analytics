@@ -90,21 +90,21 @@ export default function ActivityHeatmap({ data }: ActivityHeatmapProps) {
     <div className="overflow-x-auto">
       <div className="inline-flex flex-col gap-1 min-w-fit">
         {/* Month labels */}
-        <div className="flex ml-8">
-          {months.map((month, i) => (
-            <div
-              key={`${month.label}-${i}`}
-              className="text-xs text-muted-foreground"
-              style={{
-                position: 'relative',
-                left: `${month.col * 15}px`,
-                width: 0,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {month.label}
-            </div>
-          ))}
+        <div className="relative ml-8" style={{ height: 18 }}>
+          {months.map((month, i) => {
+            // Skip label if it would overlap with the next one (less than 3 columns apart)
+            const next = months[i + 1]
+            if (next && next.col - month.col < 3) return null
+            return (
+              <span
+                key={`${month.label}-${i}`}
+                className="absolute text-[10px] text-muted-foreground"
+                style={{ left: month.col * 15 }}
+              >
+                {month.label}
+              </span>
+            )
+          })}
         </div>
 
         <div className="flex gap-0.5">

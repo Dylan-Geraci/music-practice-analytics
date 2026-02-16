@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const name = profile.display_name || profile.username
   return {
-    title: `${name} - Music Practice Analytics`,
-    description: profile.bio || `Check out ${name}'s practice stats on Music Practice Analytics`,
+    title: `${name} - SessionLog`,
+    description: profile.bio || `Check out ${name}'s practice stats on SessionLog`,
   }
 }
 

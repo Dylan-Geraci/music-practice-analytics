@@ -41,8 +41,8 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
-            <Music className="h-6 w-6" />
-            <span className="hidden sm:inline">Practice Analytics</span>
+            <Music className="h-6 w-6 text-emerald-500" />
+            <span className="hidden sm:inline">SessionLog</span>
           </Link>
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
@@ -52,7 +52,7 @@ export default function Navbar() {
                 className={cn(
                   'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                   pathname === link.href
-                    ? 'bg-accent text-accent-foreground'
+                    ? 'bg-emerald-600/10 text-emerald-500'
                     : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                 )}
               >
@@ -109,7 +109,7 @@ export default function Navbar() {
               className={cn(
                 'block px-3 py-2 rounded-md text-sm font-medium transition-colors',
                 pathname === link.href
-                  ? 'bg-accent text-accent-foreground'
+                  ? 'bg-emerald-600/10 text-emerald-500'
                   : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
               )}
             >

@@ -41,15 +41,15 @@ export default function TempoChart({ data, targetTempo }: TempoChartProps) {
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
-              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+              <XAxis dataKey="date" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} />
+              <YAxis stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'hsl(var(--popover))',
-                  border: '1px solid hsl(var(--border))',
+                  backgroundColor: 'var(--popover)',
+                  border: '1px solid var(--border)',
                   borderRadius: '8px',
-                  color: 'hsl(var(--popover-foreground))',
+                  color: 'var(--popover-foreground)',
                 }}
                 formatter={(value) => [`${value} BPM`, 'Tempo']}
                 labelFormatter={(label) => `Date: ${label}`}
@@ -57,15 +57,15 @@ export default function TempoChart({ data, targetTempo }: TempoChartProps) {
               <Line
                 type="monotone"
                 dataKey="tempo"
-                stroke="hsl(var(--chart-1))"
+                stroke="var(--chart-1)"
                 strokeWidth={2}
-                dot={{ fill: 'hsl(var(--chart-1))' }}
+                dot={{ fill: 'var(--chart-1)' }}
               />
               {targetTempo && (
                 <Line
                   type="monotone"
                   dataKey={() => targetTempo}
-                  stroke="hsl(var(--destructive))"
+                  stroke="var(--destructive)"
                   strokeWidth={1}
                   strokeDasharray="5 5"
                   dot={false}

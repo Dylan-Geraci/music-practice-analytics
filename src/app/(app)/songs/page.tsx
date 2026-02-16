@@ -16,7 +16,15 @@ export default function SongsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Songs</h1>
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-emerald-600/10">
+            <Music className="h-6 w-6 text-emerald-500" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">Songs</h1>
+            <p className="text-muted-foreground text-sm">Your repertoire</p>
+          </div>
+        </div>
         <Button onClick={() => setAddOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
           Add Song

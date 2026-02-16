@@ -88,12 +88,12 @@ export default function SongDetailPage({ params }: { params: Promise<{ id: strin
         <Card>
           <CardContent className="pt-0">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-md bg-secondary">
-                <Clock className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-md bg-emerald-600/10">
+                <Clock className="h-4 w-4 text-emerald-500" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Total Practice</p>
-                <p className="text-lg font-semibold">{formatDuration(data.totalMinutes)}</p>
+                <p className="text-lg font-semibold text-emerald-400">{formatDuration(data.totalMinutes)}</p>
               </div>
             </div>
           </CardContent>
@@ -101,12 +101,12 @@ export default function SongDetailPage({ params }: { params: Promise<{ id: strin
         <Card>
           <CardContent className="pt-0">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-md bg-secondary">
-                <Hash className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-md bg-emerald-600/10">
+                <Hash className="h-4 w-4 text-emerald-500" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Sessions</p>
-                <p className="text-lg font-semibold">{data.sessionCount}</p>
+                <p className="text-lg font-semibold text-emerald-400">{data.sessionCount}</p>
               </div>
             </div>
           </CardContent>
@@ -115,12 +115,12 @@ export default function SongDetailPage({ params }: { params: Promise<{ id: strin
           <Card>
             <CardContent className="pt-0">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-md bg-secondary">
-                  <Music className="h-4 w-4 text-muted-foreground" />
+                <div className="p-2 rounded-md bg-emerald-600/10">
+                  <Music className="h-4 w-4 text-emerald-500" />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Target Tempo</p>
-                  <p className="text-lg font-semibold">{data.song.target_tempo} BPM</p>
+                  <p className="text-lg font-semibold text-emerald-400">{data.song.target_tempo} BPM</p>
                 </div>
               </div>
             </CardContent>
@@ -150,7 +150,7 @@ export default function SongDetailPage({ params }: { params: Promise<{ id: strin
                       {section.sessionCount} session{section.sessionCount !== 1 ? 's' : ''}
                     </p>
                   </div>
-                  <p className="text-sm font-medium">{formatDuration(section.minutes)}</p>
+                  <p className="text-sm font-medium text-emerald-400">{formatDuration(section.minutes)}</p>
                 </div>
               ))}
             </div>
