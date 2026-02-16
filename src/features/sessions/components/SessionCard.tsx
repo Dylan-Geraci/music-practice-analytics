@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Pencil, Trash2 } from 'lucide-react'
@@ -38,10 +39,19 @@ export default function SessionCard({ session }: SessionCardProps) {
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold">
-                  {session.song ? session.song.title : 'No song'}
+                  {session.song ? (
+                    <Link
+                      href={`/songs/${session.song.id}`}
+                      className="hover:text-emerald-400 transition-colors"
+                    >
+                      {session.song.title}
+                    </Link>
+                  ) : (
+                    'No song'
+                  )}
                 </h3>
                 {session.section && (
-                  <span className="text-xs bg-secondary text-secondary-foreground rounded px-2 py-0.5">
+                  <span className="text-xs bg-emerald-600/10 text-emerald-400 rounded px-2 py-0.5 border border-emerald-600/20">
                     {session.section.name}
                   </span>
                 )}

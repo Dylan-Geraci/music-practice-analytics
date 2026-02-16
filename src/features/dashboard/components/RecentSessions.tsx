@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { StatsData } from '../hooks/useStats'
 
@@ -33,8 +34,11 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-base">Recent Sessions</CardTitle>
+        <Link href="/sessions" className="text-xs text-emerald-500 hover:text-emerald-400 transition-colors">
+          View all
+        </Link>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -45,7 +49,16 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
             >
               <div className="min-w-0">
                 <p className="text-sm font-medium truncate">
-                  {session.song ? session.song.title : 'General Practice'}
+                  {session.song ? (
+                    <Link
+                      href={`/songs/${session.song.id}`}
+                      className="hover:text-emerald-400 transition-colors"
+                    >
+                      {session.song.title}
+                    </Link>
+                  ) : (
+                    'General Practice'
+                  )}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {formatDate(session.practiced_at)}
@@ -53,7 +66,7 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
                 </p>
               </div>
               <div className="ml-4 shrink-0 text-right">
-                <p className="text-sm font-medium">{session.duration_minutes} min</p>
+                <p className="text-sm font-medium text-emerald-400">{session.duration_minutes} min</p>
                 {session.tempo_bpm && (
                   <p className="text-xs text-muted-foreground">{session.tempo_bpm} BPM</p>
                 )}

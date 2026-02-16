@@ -7,7 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Music Practice Analytics",
+  title: "SessionLog",
   description: "Track your music practice sessions and visualize your progress",
 };
 

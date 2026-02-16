@@ -1,97 +1,146 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { AuthLayout } from '../components/AuthLayout'
+import { checkLoginLock, recordFailedAttempt, clearFailedAttempts } from '@/lib/auth-validation'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isSignUp, setIsSignUp] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const { signIn, signUp } = useAuth()
+  const [locked, setLocked] = useState(false)
+  const [minutesRemaining, setMinutesRemaining] = useState(0)
+  const { signIn } = useAuth()
   const router = useRouter()
+
+  const refreshLockStatus = useCallback(() => {
+    if (!email) return
+    const status = checkLoginLock(email)
+    setLocked(status.locked)
+    setMinutesRemaining(status.minutesRemaining)
+  }, [email])
+
+  // Refresh lock status when email changes and periodically while locked
+  useEffect(() => {
+    refreshLockStatus()
+    if (!locked) return
+    const interval = setInterval(refreshLockStatus, 30000)
+    return () => clearInterval(interval)
+  }, [locked, refreshLockStatus])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+
+    // Check lock before attempting
+    const lockStatus = checkLoginLock(email)
+    if (lockStatus.locked) {
+      setLocked(true)
+      setMinutesRemaining(lockStatus.minutesRemaining)
+      return
+    }
+
     setLoading(true)
 
-    const { error } = isSignUp
-      ? await signUp(email, password)
-      : await signIn(email, password)
+    const { error } = await signIn(email, password)
 
     setLoading(false)
 
     if (error) {
-      setError(error.message)
-    } else if (!isSignUp) {
-      router.push('/')
+      const result = recordFailedAttempt(email)
+      if (result.locked) {
+        setLocked(true)
+        setMinutesRemaining(15)
+        setError(null)
+      } else {
+        setError(`${error.message} (${result.attemptsRemaining} attempt${result.attemptsRemaining === 1 ? '' : 's'} remaining)`)
+      }
     } else {
-      setError('Check your email to confirm your account')
+      clearFailedAttempts(email)
+      router.push('/')
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Music Practice Analytics</CardTitle>
-          <CardDescription>
-            {isSignUp ? 'Create an account' : 'Sign in to your account'}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+    <AuthLayout>
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold tracking-tight">Welcome back</h2>
+          <p className="text-sm text-muted-foreground">
+            Sign in to your account to continue
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={locked}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <div className="relative">
               <Input
                 id="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                minLength={6}
+                minLength={8}
+                disabled={locked}
+                className="pr-10"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                tabIndex={-1}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
             </div>
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
-            </Button>
-          </form>
-          <div className="mt-4 text-center text-sm">
-            <button
-              type="button"
-              className="text-muted-foreground hover:text-foreground underline"
-              onClick={() => {
-                setIsSignUp(!isSignUp)
-                setError(null)
-              }}
-            >
-              {isSignUp ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
-            </button>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+          {locked && (
+            <p className="text-sm text-destructive">
+              Too many failed attempts. Try again in {minutesRemaining} minute{minutesRemaining === 1 ? '' : 's'}.
+            </p>
+          )}
+          {error && !locked && (
+            <p className="text-sm text-destructive">{error}</p>
+          )}
+          <Button
+            type="submit"
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
+            disabled={loading || locked}
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </Button>
+        </form>
+
+        <p className="text-center text-sm text-muted-foreground">
+          Don&apos;t have an account?{' '}
+          <Link href="/signup" className="text-emerald-600 hover:text-emerald-500 font-medium">
+            Sign up
+          </Link>
+        </p>
+      </div>
+    </AuthLayout>
   )
 }

@@ -34,11 +34,12 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Protected routes - redirect to login if not authenticated
-  const isAuthPage = request.nextUrl.pathname.startsWith("/login");
+  const pathname = request.nextUrl.pathname;
+  const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/signup");
   const isPublicRoute =
     isAuthPage ||
-    request.nextUrl.pathname.startsWith("/api/") ||
-    request.nextUrl.pathname.startsWith("/u/");
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/u/");
 
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();

@@ -9,7 +9,8 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from 'recharts'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Music } from 'lucide-react'
 
 interface TopSongsChartProps {
   data: Array<{ title: string; minutes: number }>
@@ -20,7 +21,15 @@ export default function TopSongsChart({ data }: TopSongsChartProps) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Most Practiced Songs</CardTitle>
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-md bg-emerald-600/10">
+              <Music className="h-4 w-4 text-emerald-500" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Most Practiced Songs</CardTitle>
+              <CardDescription>Your top songs by practice time</CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
@@ -34,32 +43,42 @@ export default function TopSongsChart({ data }: TopSongsChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">Most Practiced Songs</CardTitle>
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 rounded-md bg-emerald-600/10">
+            <Music className="h-4 w-4 text-emerald-500" />
+          </div>
+          <div>
+            <CardTitle className="text-base">Most Practiced Songs</CardTitle>
+            <CardDescription>Your top songs by practice time</CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+              <XAxis type="number" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} />
               <YAxis
                 dataKey="title"
                 type="category"
                 width={120}
-                stroke="hsl(var(--muted-foreground))"
+                stroke="var(--muted-foreground)"
                 fontSize={12}
                 tick={{ width: 110 }}
+                tickLine={false}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'hsl(var(--popover))',
-                  border: '1px solid hsl(var(--border))',
+                  backgroundColor: 'var(--popover)',
+                  border: '1px solid var(--border)',
                   borderRadius: '8px',
-                  color: 'hsl(var(--popover-foreground))',
+                  color: 'var(--popover-foreground)',
                 }}
                 formatter={(value) => [`${value} min`, 'Practice Time']}
+                cursor={{ fill: 'var(--accent)', opacity: 0.3 }}
               />
-              <Bar dataKey="minutes" fill="hsl(var(--chart-4))" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="minutes" fill="var(--chart-3)" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
