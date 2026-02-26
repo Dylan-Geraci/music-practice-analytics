@@ -21,8 +21,8 @@ export default function PracticeByMonthChart({ data }: PracticeByMonthChartProps
     <Card>
       <CardHeader>
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-emerald-600/10">
-            <TrendingUp className="h-4 w-4 text-emerald-500" />
+          <div className="p-1.5 rounded-md bg-olive-muted">
+            <TrendingUp className="h-4 w-4 text-primary" />
           </div>
           <div>
             <CardTitle className="text-base">Monthly Practice Time</CardTitle>

@@ -153,7 +153,7 @@ export default function Metronome() {
               className={`h-4 w-4 rounded-full transition-colors ${
                 isPlaying && beat === i
                   ? i === 0
-                    ? 'bg-emerald-400'
+                    ? 'bg-primary'
                     : 'bg-primary'
                   : 'bg-secondary'
               }`}

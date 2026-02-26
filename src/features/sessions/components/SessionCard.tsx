@@ -42,7 +42,7 @@ export default function SessionCard({ session }: SessionCardProps) {
                   {session.song ? (
                     <Link
                       href={`/songs/${session.song.id}`}
-                      className="hover:text-emerald-400 transition-colors"
+                      className="hover:text-primary transition-colors"
                     >
                       {session.song.title}
                     </Link>
@@ -51,7 +51,7 @@ export default function SessionCard({ session }: SessionCardProps) {
                   )}
                 </h3>
                 {session.section && (
-                  <span className="text-xs bg-emerald-600/10 text-emerald-400 rounded px-2 py-0.5 border border-emerald-600/20">
+                  <span className="text-xs bg-olive-muted text-primary rounded px-2 py-0.5 border border-primary/20">
                     {session.section.name}
                   </span>
                 )}

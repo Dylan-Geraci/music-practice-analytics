@@ -17,11 +17,11 @@ export default function SongsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-emerald-600/10">
-            <Music className="h-6 w-6 text-emerald-500" />
+          <div className="p-2 rounded-lg bg-olive-muted">
+            <Music className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Songs</h1>
+            <h1 className="text-3xl font-bold font-serif">Songs</h1>
             <p className="text-muted-foreground text-sm">Your repertoire</p>
           </div>
         </div>

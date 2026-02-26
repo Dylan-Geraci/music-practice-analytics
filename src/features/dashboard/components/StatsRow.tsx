@@ -57,12 +57,12 @@ export default function StatsRow({
         <Card key={stat.label}>
           <CardContent className="pt-0">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-md bg-emerald-600/10">
-                <stat.icon className="h-4 w-4 text-emerald-500" />
+              <div className="p-2 rounded-md bg-olive-muted">
+                <stat.icon className="h-4 w-4 text-primary" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">{stat.label}</p>
-                <p className="text-lg font-semibold text-emerald-400">{stat.value}</p>
+                <p className="text-lg font-semibold text-primary">{stat.value}</p>
               </div>
             </div>
           </CardContent>

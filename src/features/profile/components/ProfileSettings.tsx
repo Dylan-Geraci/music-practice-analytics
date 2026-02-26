@@ -125,7 +125,7 @@ export default function ProfileSettings() {
             <p className="text-sm text-destructive">{error}</p>
           )}
           {success && (
-            <p className="text-sm text-emerald-500">Profile updated successfully!</p>
+            <p className="text-sm text-primary">Profile updated successfully!</p>
           )}
 
           <Button type="submit" disabled={updateProfile.isPending}>

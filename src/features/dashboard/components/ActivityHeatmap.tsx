@@ -9,10 +9,10 @@ interface ActivityHeatmapProps {
 
 function getColor(minutes: number): string {
   if (minutes === 0) return 'bg-secondary'
-  if (minutes < 15) return 'bg-emerald-900/60'
-  if (minutes < 30) return 'bg-emerald-700/70'
-  if (minutes < 60) return 'bg-emerald-500/80'
-  return 'bg-emerald-400'
+  if (minutes < 15) return 'bg-primary/20'
+  if (minutes < 30) return 'bg-primary/40'
+  if (minutes < 60) return 'bg-primary/70'
+  return 'bg-primary'
 }
 
 function formatDate(date: Date): string {
@@ -156,10 +156,10 @@ export default function ActivityHeatmap({ data }: ActivityHeatmapProps) {
         <div className="flex items-center gap-1 mt-1 ml-8 text-xs text-muted-foreground">
           <span>Less</span>
           <div className="h-[13px] w-[13px] rounded-sm bg-secondary" />
-          <div className="h-[13px] w-[13px] rounded-sm bg-emerald-900/60" />
-          <div className="h-[13px] w-[13px] rounded-sm bg-emerald-700/70" />
-          <div className="h-[13px] w-[13px] rounded-sm bg-emerald-500/80" />
-          <div className="h-[13px] w-[13px] rounded-sm bg-emerald-400" />
+          <div className="h-[13px] w-[13px] rounded-sm bg-primary/20" />
+          <div className="h-[13px] w-[13px] rounded-sm bg-primary/40" />
+          <div className="h-[13px] w-[13px] rounded-sm bg-primary/70" />
+          <div className="h-[13px] w-[13px] rounded-sm bg-primary" />
           <span>More</span>
         </div>
       </div>
