@@ -14,10 +14,10 @@ export function AuthLayout({ children, features }: AuthLayoutProps) {
         className="hidden lg:flex lg:w-[45%] flex-col items-center justify-center p-12 text-white relative overflow-hidden"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 20% 30%, oklch(0.5 0.17 162 / 0.6), transparent),
-            radial-gradient(ellipse 70% 50% at 80% 70%, oklch(0.35 0.15 200 / 0.5), transparent),
-            radial-gradient(ellipse 90% 80% at 50% 50%, oklch(0.4 0.12 170 / 0.3), transparent),
-            oklch(0.15 0.02 200)
+            radial-gradient(ellipse 80% 60% at 20% 30%, oklch(0.5 0.08 110 / 0.6), transparent),
+            radial-gradient(ellipse 70% 50% at 80% 70%, oklch(0.35 0.06 80 / 0.5), transparent),
+            radial-gradient(ellipse 90% 80% at 50% 50%, oklch(0.4 0.05 100 / 0.3), transparent),
+            oklch(0.18 0.02 80)
           `,
         }}
       >
@@ -26,7 +26,7 @@ export function AuthLayout({ children, features }: AuthLayoutProps) {
             <Music className="h-10 w-10" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">SessionLog</h1>
+            <h1 className="text-2xl font-bold tracking-tight font-serif">SessionLog</h1>
             <p className="mt-2 text-sm text-white/70">
               Track your progress. Build your streak.
             </p>
@@ -36,7 +36,7 @@ export function AuthLayout({ children, features }: AuthLayoutProps) {
             <div className="mt-8 flex flex-col gap-4 text-left w-full">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-3 rounded-lg bg-white/5 px-4 py-3">
-                  <span className="text-emerald-300">{feature.icon}</span>
+                  <span className="text-white/80">{feature.icon}</span>
                   <span className="text-sm font-medium text-white/90">{feature.text}</span>
                 </div>
               ))}

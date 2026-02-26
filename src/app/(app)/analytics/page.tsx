@@ -50,11 +50,11 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-emerald-600/10">
-          <BarChart3 className="h-6 w-6 text-emerald-500" />
+        <div className="p-2 rounded-lg bg-olive-muted">
+          <BarChart3 className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold">Analytics</h1>
+          <h1 className="text-3xl font-bold font-serif">Analytics</h1>
           <p className="text-muted-foreground text-sm">Insights into your practice habits</p>
         </div>
       </div>

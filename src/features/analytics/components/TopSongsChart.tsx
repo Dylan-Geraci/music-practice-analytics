@@ -22,8 +22,8 @@ export default function TopSongsChart({ data }: TopSongsChartProps) {
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-md bg-emerald-600/10">
-              <Music className="h-4 w-4 text-emerald-500" />
+            <div className="p-1.5 rounded-md bg-olive-muted">
+              <Music className="h-4 w-4 text-primary" />
             </div>
             <div>
               <CardTitle className="text-base">Most Practiced Songs</CardTitle>
@@ -44,8 +44,8 @@ export default function TopSongsChart({ data }: TopSongsChartProps) {
     <Card>
       <CardHeader>
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-emerald-600/10">
-            <Music className="h-4 w-4 text-emerald-500" />
+          <div className="p-1.5 rounded-md bg-olive-muted">
+            <Music className="h-4 w-4 text-primary" />
           </div>
           <div>
             <CardTitle className="text-base">Most Practiced Songs</CardTitle>

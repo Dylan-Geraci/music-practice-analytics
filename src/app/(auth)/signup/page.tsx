@@ -74,17 +74,17 @@ export default function SignupPage() {
     return (
       <AuthLayout>
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="rounded-full bg-emerald-600/10 p-4">
-            <Mail className="h-8 w-8 text-emerald-600" />
+          <div className="rounded-full bg-olive-muted p-4">
+            <Mail className="h-8 w-8 text-primary" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight">Check your email</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-serif">Check your email</h2>
           <p className="text-sm text-muted-foreground max-w-xs">
             We&apos;ve sent a confirmation link to <strong>{email}</strong>. Click the link to
             activate your account.
           </p>
           <Link
             href="/login"
-            className="text-sm text-emerald-600 hover:text-emerald-500 font-medium"
+            className="text-sm text-primary hover:text-primary/80 font-medium"
           >
             Back to sign in
           </Link>
@@ -97,7 +97,7 @@ export default function SignupPage() {
     <AuthLayout features={features}>
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight">Create an account</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-serif">Create an account</h2>
           <p className="text-sm text-muted-foreground">
             Start tracking your practice today
           </p>
@@ -193,7 +193,7 @@ export default function SignupPage() {
           )}
           <Button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
+            className="w-full bg-primary hover:bg-primary/90 text-white rounded-full"
             disabled={loading}
           >
             {loading ? 'Creating account...' : 'Sign Up'}
@@ -202,7 +202,7 @@ export default function SignupPage() {
 
         <p className="text-center text-sm text-muted-foreground">
           Already have an account?{' '}
-          <Link href="/login" className="text-emerald-600 hover:text-emerald-500 font-medium">
+          <Link href="/login" className="text-primary hover:text-primary/80 font-medium">
             Sign in
           </Link>
         </p>

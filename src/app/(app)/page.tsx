@@ -125,12 +125,12 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-xl border border-emerald-600/20 bg-gradient-to-br from-emerald-600/15 via-emerald-600/5 to-transparent p-6 sm:p-8">
+      <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              {currentStreak > 0 && <Flame className="h-6 w-6 text-emerald-400" />}
-              <h1 className="text-2xl sm:text-3xl font-bold">
+              {currentStreak > 0 && <Flame className="h-6 w-6 text-primary" />}
+              <h1 className="text-2xl sm:text-3xl font-bold font-serif">
                 {currentStreak > 0
                   ? `${currentStreak}-day streak`
                   : 'Welcome back'}
@@ -147,7 +147,7 @@ export default function DashboardPage() {
           </div>
           <Button
             size="lg"
-            className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white"
+            className="shrink-0 bg-primary hover:bg-primary/90 text-white rounded-full"
             onClick={() => setLogOpen(true)}
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -191,8 +191,8 @@ export default function DashboardPage() {
               {insights?.lastSession?.song && (
                 <Link href={`/songs/${insights.lastSession.song.id}`} className="block">
                   <div className="flex items-center gap-3 rounded-lg border border-border p-3 hover:bg-accent/50 transition-colors">
-                    <div className="p-1.5 rounded-md bg-emerald-600/10">
-                      <Music className="h-4 w-4 text-emerald-500" />
+                    <div className="p-1.5 rounded-md bg-olive-muted">
+                      <Music className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium truncate">Continue practicing</p>
@@ -206,8 +206,8 @@ export default function DashboardPage() {
               )}
               <Link href="/songs" className="block">
                 <div className="flex items-center gap-3 rounded-lg border border-border p-3 hover:bg-accent/50 transition-colors">
-                  <div className="p-1.5 rounded-md bg-emerald-600/10">
-                    <Music className="h-4 w-4 text-emerald-500" />
+                  <div className="p-1.5 rounded-md bg-olive-muted">
+                    <Music className="h-4 w-4 text-primary" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium">View Songs</p>
@@ -218,8 +218,8 @@ export default function DashboardPage() {
               </Link>
               <Link href="/sessions" className="block">
                 <div className="flex items-center gap-3 rounded-lg border border-border p-3 hover:bg-accent/50 transition-colors">
-                  <div className="p-1.5 rounded-md bg-emerald-600/10">
-                    <Clock className="h-4 w-4 text-emerald-500" />
+                  <div className="p-1.5 rounded-md bg-olive-muted">
+                    <Clock className="h-4 w-4 text-primary" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium">View Sessions</p>
@@ -238,7 +238,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Lightbulb className="h-4 w-4 text-emerald-500" />
+                  <Lightbulb className="h-4 w-4 text-primary" />
                   <CardTitle className="text-base">Insights</CardTitle>
                 </div>
               </CardHeader>
@@ -246,14 +246,14 @@ export default function DashboardPage() {
                 {insights.topSong && (
                   <div className="text-sm">
                     <p className="text-muted-foreground">Most practiced recently</p>
-                    <p className="font-medium text-emerald-400">{insights.topSong.title}</p>
+                    <p className="font-medium text-primary">{insights.topSong.title}</p>
                     <p className="text-xs text-muted-foreground">{formatDuration(insights.topSong.minutes)}</p>
                   </div>
                 )}
                 {insights.favoriteDay && (
                   <div className="text-sm">
                     <p className="text-muted-foreground">Most active day</p>
-                    <p className="font-medium text-emerald-400">{insights.favoriteDay}</p>
+                    <p className="font-medium text-primary">{insights.favoriteDay}</p>
                   </div>
                 )}
                 {!insights.practicedToday && currentStreak > 0 && (

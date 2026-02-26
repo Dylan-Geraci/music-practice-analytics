@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import Providers from "@/components/Providers";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+});
 
 export const metadata: Metadata = {
   title: "SessionLog",
@@ -17,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+      <body className="font-[family-name:var(--font-dm-sans)]">
         <Providers>{children}</Providers>
-        <Toaster theme="dark" richColors />
+        <Toaster theme="light" richColors />
       </body>
     </html>
   );

@@ -74,7 +74,7 @@ export default function LoginPage() {
     <AuthLayout>
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight">Welcome back</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-serif">Welcome back</h2>
           <p className="text-sm text-muted-foreground">
             Sign in to your account to continue
           </p>
@@ -127,7 +127,7 @@ export default function LoginPage() {
           )}
           <Button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white"
+            className="w-full bg-primary hover:bg-primary/90 text-white rounded-full"
             disabled={loading || locked}
           >
             {loading ? 'Signing in...' : 'Sign In'}
@@ -136,7 +136,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{' '}
-          <Link href="/signup" className="text-emerald-600 hover:text-emerald-500 font-medium">
+          <Link href="/signup" className="text-primary hover:text-primary/80 font-medium">
             Sign up
           </Link>
         </p>

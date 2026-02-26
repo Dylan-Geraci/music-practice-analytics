@@ -57,7 +57,7 @@ export default function PublicProfileView({
             <AvatarFallback className="text-xl">{initial}</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-bold">{displayName}</h1>
+            <h1 className="text-2xl font-bold font-serif">{displayName}</h1>
             {profile.username && (
               <p className="text-muted-foreground">@{profile.username}</p>
             )}

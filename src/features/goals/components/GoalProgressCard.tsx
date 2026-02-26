@@ -43,7 +43,7 @@ export default function GoalProgressCard() {
               </div>
               <div className="h-2 rounded-full bg-secondary overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                  className="h-full rounded-full bg-primary transition-all duration-500"
                   style={{ width: `${item.percentage}%` }}
                 />
               </div>

@@ -43,11 +43,11 @@ export default function SessionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-emerald-600/10">
-            <Clock className="h-6 w-6 text-emerald-500" />
+          <div className="p-2 rounded-lg bg-olive-muted">
+            <Clock className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Sessions</h1>
+            <h1 className="text-3xl font-bold font-serif">Sessions</h1>
             <p className="text-muted-foreground text-sm">Your practice history</p>
           </div>
         </div>
@@ -66,8 +66,8 @@ export default function SessionsPage() {
             className={cn(
               'px-3 py-1 rounded-full text-xs font-medium transition-colors border',
               songFilter === null
-                ? 'bg-emerald-600/15 text-emerald-400 border-emerald-600/30'
-                : 'bg-transparent text-muted-foreground border-border hover:border-emerald-600/30 hover:text-foreground'
+                ? 'bg-olive-muted text-primary border-primary/30'
+                : 'bg-transparent text-muted-foreground border-border hover:border-primary/30 hover:text-foreground'
             )}
           >
             All ({sessions?.length ?? 0})
@@ -79,8 +79,8 @@ export default function SessionsPage() {
               className={cn(
                 'px-3 py-1 rounded-full text-xs font-medium transition-colors border truncate max-w-[200px]',
                 songFilter === song.id
-                  ? 'bg-emerald-600/15 text-emerald-400 border-emerald-600/30'
-                  : 'bg-transparent text-muted-foreground border-border hover:border-emerald-600/30 hover:text-foreground'
+                  ? 'bg-olive-muted text-primary border-primary/30'
+                  : 'bg-transparent text-muted-foreground border-border hover:border-primary/30 hover:text-foreground'
               )}
             >
               {song.title} ({song.count})

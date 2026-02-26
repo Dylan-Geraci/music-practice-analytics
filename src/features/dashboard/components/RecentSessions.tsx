@@ -36,7 +36,7 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-base">Recent Sessions</CardTitle>
-        <Link href="/sessions" className="text-xs text-emerald-500 hover:text-emerald-400 transition-colors">
+        <Link href="/sessions" className="text-xs text-primary hover:text-primary/80 transition-colors">
           View all
         </Link>
       </CardHeader>
@@ -52,7 +52,7 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
                   {session.song ? (
                     <Link
                       href={`/songs/${session.song.id}`}
-                      className="hover:text-emerald-400 transition-colors"
+                      className="hover:text-primary transition-colors"
                     >
                       {session.song.title}
                     </Link>
@@ -66,7 +66,7 @@ export default function RecentSessions({ sessions }: RecentSessionsProps) {
                 </p>
               </div>
               <div className="ml-4 shrink-0 text-right">
-                <p className="text-sm font-medium text-emerald-400">{session.duration_minutes} min</p>
+                <p className="text-sm font-medium text-primary">{session.duration_minutes} min</p>
                 {session.tempo_bpm && (
                   <p className="text-xs text-muted-foreground">{session.tempo_bpm} BPM</p>
                 )}
