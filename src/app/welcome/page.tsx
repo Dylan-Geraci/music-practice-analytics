@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { PenLine, BarChart3, Target } from 'lucide-react'
 
 /* ── Heatmap color helper ── */
 const HEATMAP_COLORS = [
@@ -25,22 +26,28 @@ const MOCK_HEATMAP = [
 
 export default function WelcomePage() {
   const previewRef = useRef<HTMLDivElement>(null)
+  const featuresRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const el = previewRef.current
-    if (!el) return
+    const els = [previewRef.current, featuresRef.current]
+    const observers: IntersectionObserver[] = []
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('revealed')
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
+    els.forEach((el) => {
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.classList.add('revealed')
+            observer.disconnect()
+          }
+        },
+        { threshold: 0.15 },
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
   }, [])
 
   return (
@@ -190,6 +197,41 @@ export default function WelcomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Feature Highlights ── */}
+      <section className="mx-auto max-w-5xl px-4 py-20">
+        <div ref={featuresRef} className="scroll-reveal">
+          <h2 className="text-center text-2xl sm:text-3xl font-serif font-bold mb-12">
+            Everything you need to practice better.
+          </h2>
+
+          <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {[
+              {
+                icon: PenLine,
+                heading: 'Log every session',
+                description: 'Record what you practiced, how long, tempo, and how it felt — in seconds.',
+              },
+              {
+                icon: BarChart3,
+                heading: 'See your patterns',
+                description: 'Streaks, heatmaps, and charts show how your habits are building over time.',
+              },
+              {
+                icon: Target,
+                heading: 'Set goals, stay consistent',
+                description: 'Daily and weekly targets keep you accountable and moving forward.',
+              },
+            ].map((feature) => (
+              <div key={feature.heading} className="flex flex-col items-center text-center">
+                <feature.icon className="text-primary mb-4" size={28} />
+                <h3 className="font-serif font-bold mb-2">{feature.heading}</h3>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
