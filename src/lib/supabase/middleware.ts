@@ -38,12 +38,13 @@ export async function updateSession(request: NextRequest) {
   const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/signup");
   const isPublicRoute =
     isAuthPage ||
+    pathname === "/welcome" ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/u/");
 
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/welcome";
     return NextResponse.redirect(url);
   }
 
